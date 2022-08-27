@@ -24,12 +24,12 @@ def wait_for_visibility_of_element_by_id(driver_instance, id, time_to_wait=10):
         elem = False
     return elem
 
-def wait_for_invisibility_of_element(inv_driver_instance, xpath, time_to_wait=8):
+def wait_for_invisibility_of_element_by_xpath(inv_driver_instance, xpath, time_to_wait=8):
     inv_element = WebDriverWait(inv_driver_instance, time_to_wait).until(EC.invisibility_of_element((By.XPATH, xpath)))
     return inv_element
 
-def wait_for_element_to_be_clickable(click_driver_instance, xpath, time_to_wait=5):
-    clickable_elem = WebDriverWait(click_driver_instance, time_to_wait).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+def wait_for_element_to_be_clickable(click_driver_instance, id, time_to_wait=5):
+    clickable_elem = WebDriverWait(click_driver_instance, time_to_wait).until(EC.element_to_be_clickable((By.ID, id)))
     return clickable_elem
 
 def wait_for_alert_to_be_presented(driver_instance, time_to_wait=5):

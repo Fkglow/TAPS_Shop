@@ -1,8 +1,7 @@
 import unittest
 from selenium import webdriver
-
 from config.test_settings import TestSettings
-from tests.page_objects import main_page, cart_page
+from tests.page_objects import main_page, cart_page, order_page
 
 
 class Tests(unittest.TestCase):
@@ -15,19 +14,14 @@ class Tests(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    def test1_add_item_to_cart(self):
+    def test1_process(self):
+        self.assertTrue(main_page.logo_is_visible(self.driver))
         main_page.add_item_to_cart(self.driver)
         main_page.go_to_cart_page(self.driver)
         self.assertTrue(cart_page.check_item_in_cart(self.driver))
-
-    def test2_remove_item_from_cart(self):
-        main_page.add_item_to_cart(self.driver)
-        main_page.go_to_cart_page(self.driver)
-        self.assertTrue(cart_page.check_item_in_cart(self.driver))
-        cart_page.remove_item_from_cart(self.driver)
-        self.assertTrue(cart_page.check_item_not_in_cart(self.driver))
-
-
+        cart_page.approve_cart(self.driver)
+        order_page.proper_fill_all_form_areas(self.driver)
+        order_page.submit_order(self.driver)
 
 if __name__ == '__main__':
     unittest.main()
