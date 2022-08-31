@@ -42,7 +42,6 @@ def form_add_wrong_surname(driver_instance):
 def get_first_dropdown_value(driver_instance):
     elem_list = Select(driver_instance.find_element_by_id(dropdown_country))
     wait_for_visibility_of_element_by_id(driver_instance, dropdown_country, time_to_wait=1)
-    wait_for_element_to_be_clickable(driver_instance, first_option, time_to_wait=10)
     elem_list.select_by_index(1)
 
 
