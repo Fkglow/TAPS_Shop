@@ -1,7 +1,7 @@
 import unittest
 from selenium import webdriver
 from config.test_settings import TestSettings
-from tests.page_objects import main_page, cart_page, order_page
+from tests.page_objects import main_page, cart_page, order_page, order_success_page
 
 
 class Tests(unittest.TestCase):
@@ -22,6 +22,8 @@ class Tests(unittest.TestCase):
         cart_page.approve_cart(self.driver)
         order_page.proper_fill_all_form_areas(self.driver)
         order_page.submit_order(self.driver)
+        # self.assertTrue(order_success_page.order_confirmation(self.driver))
+        self.assertTrue(order_success_page.price_is_correct(self.driver))
 
 if __name__ == '__main__':
     unittest.main()
