@@ -22,7 +22,16 @@ class Tests(unittest.TestCase):
         cart_page.approve_cart(self.driver)
         order_page.proper_fill_all_form_areas(self.driver)
         order_page.submit_order(self.driver)
-        # self.assertTrue(order_success_page.order_confirmation(self.driver))
+        self.assertTrue(order_success_page.order_received_confirmation(self.driver))
+
+    def test2_price_is_correct(self):
+        self.assertTrue(main_page.logo_is_visible(self.driver))
+        main_page.add_item_to_cart(self.driver)
+        main_page.go_to_cart_page(self.driver)
+        self.assertTrue(cart_page.check_item_in_cart(self.driver))
+        cart_page.approve_cart(self.driver)
+        order_page.proper_fill_all_form_areas(self.driver)
+        order_page.submit_order(self.driver)
         self.assertTrue(order_success_page.price_is_correct(self.driver))
 
 if __name__ == '__main__':
