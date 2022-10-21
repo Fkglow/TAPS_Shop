@@ -1,5 +1,3 @@
-import time
-
 from tests.helpers.support_functions import *
 from selenium.webdriver.support.select import Select
 from tests.helpers.DataGenerator import *
@@ -15,6 +13,7 @@ city = 'billing_city'
 phone = 'billing_phone'
 email = 'billing_email'
 place_order_button = 'place_order'
+incorrect_form_message = "//*[@id='post-8']/div/div/form[3]/div[1]"
 
 
 valid_postcode = '00-123'
@@ -106,9 +105,24 @@ def proper_fill_all_form_areas(driver_instance):
     form_add_proper_postcode(driver_instance)
     form_add_proper_phone(driver_instance)
     form_add_proper_email(driver_instance)
-    time.sleep(1)
+    sleep(1)
+
+def wrong_fill_all_form_areas(driver_instance):
+    form_add_wrong_name(driver_instance)
+    form_add_wrong_surname(driver_instance)
+    # get_first_dropdown_value(driver_instance)
+    form_add_wrong_city(driver_instance)
+    form_add_wrong_city(driver_instance)
+    form_add_wrong_postcode(driver_instance)
+    form_add_wrong_phone(driver_instance)
+    form_add_wrong_email(driver_instance)
+    sleep(1)
 
 
 def submit_order(driver_instance):
     elem = wait_for_visibility_of_element_by_id(driver_instance, place_order_button)
     elem.click()
+
+def incorrect_form_submit(driver_instance):
+    elem = wait_for_visibility_of_element_by_xpath(driver_instance, incorrect_form_message)
+    return elem.is_displayed()

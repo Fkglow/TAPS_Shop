@@ -1,5 +1,3 @@
-import time
-
 from tests.helpers.support_functions import *
 
 item_in_cart = "//*[@id='post-7']/div/div/form/table/tbody/tr[1]"

@@ -1,4 +1,3 @@
-import time
 from tests.helpers.support_functions import *
 
 order_confirmation_message = "//*[@id='post-8']/div/div/div/p"
